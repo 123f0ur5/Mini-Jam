@@ -16,6 +16,7 @@ enum {
 func _ready():
 
 	start_pos = position
+	add_to_group("SurvivorGroup")
 
 
 func _process(delta):
@@ -47,7 +48,10 @@ func choose(array):
 	
 	
 
-
 func _on_timer_timeout():
 	$Timer.wait_time = choose([0.5, 1])
 	current_state = choose([IDLE, NEW_DIR, MOVE])
+	
+
+func on_damage_received():
+	queue_free()

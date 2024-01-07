@@ -32,8 +32,10 @@ script = SubResource("GDScript_vhge2")
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 2
 texture_repeat = 2
+position = Vector2(-3, 6)
 texture = ExtResource("1_x82vv")
 region_enabled = true
 region_rect = Rect2(0, 0, 4000, 4000)
 
 [node name="Player" parent="." instance=ExtResource("2_wqky6")]
+position = Vector2(-19, 32)
