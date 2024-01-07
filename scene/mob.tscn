@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b866uyi4qvops"]
+
+[ext_resource type="Script" path="res://script/mob.gd" id="1_3jqta"]
+[ext_resource type="Texture2D" uid="uid://dfwu5cn51cmc" path="res://icon.svg" id="2_6p6mu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_syu83"]
+
+[node name="Mob" type="Node"]
+
+[node name="Mob" type="CharacterBody2D" parent="."]
+position = Vector2(317, 50)
+collision_mask = 2
+script = ExtResource("1_3jqta")
+
+[node name="Sprite2D" type="Sprite2D" parent="Mob"]
+texture = ExtResource("2_6p6mu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob"]
+scale = Vector2(6.41942, 4.90311)
+shape = SubResource("RectangleShape2D_syu83")
+
+[node name="Timer" type="Timer" parent="Mob"]
+autostart = true
+
+[connection signal="timeout" from="Mob/Timer" to="Mob" method="_on_timer_timeout"]
