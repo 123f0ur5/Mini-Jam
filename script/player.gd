@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var movement_speed = 40.0
+var movement_speed = 1000.0
 
 @onready var sprite = get_node("Sprite2D")
 @onready var walkTimer = get_node("WalkTimer")
