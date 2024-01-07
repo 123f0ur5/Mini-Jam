@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Minijam"
 run/main_scene="res://scene/menu.tscn"
-config/features=PackedStringArray("4.0", "GL Compatibility")
+config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]

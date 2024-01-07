@@ -1,7 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://b7elepxpsbos8"]
+[gd_scene load_steps=28 format=3 uid="uid://b7elepxpsbos8"]
 
+[ext_resource type="Script" path="res://script/spawnNpcs.gd" id="1_5c8ml"]
 [ext_resource type="Texture2D" uid="uid://wwg8cfoy8jec" path="res://assets/Mapa Minijam Finished.jpg" id="1_lm5vn"]
 [ext_resource type="PackedScene" uid="uid://crtq5rj75npbm" path="res://scene/player.tscn" id="2_wqky6"]
+[ext_resource type="PackedScene" uid="uid://cbmpisglt1kp6" path="res://scene/pauseMenu.tscn" id="4_3hsco"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1v0c4"]
 size = Vector2(24.5, 1252.63)
@@ -75,35 +77,7 @@ size = Vector2(13.5, 453)
 [node name="World" type="Node2D"]
 z_as_relative = false
 position = Vector2(7, 10)
-
-
-
-[sub_resource type="GDScript" id="GDScript_vhge2"]
-script/source = "extends Node2D
-
-var numeroNPCs = 20
-var arraySurvivors = []
-var survivor_scene = preload(\"res://scene/mob.tscn\")
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	for i in numeroNPCs:
-		add_survivor()
-		
-	pass # Replace with function body.
-
-func add_survivor():
-	var survivor = survivor_scene.instantiate()
-	arraySurvivors.append(survivor)
-	add_child(survivor)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
-
-[node name="World" type="Node2D"]
-script = SubResource("GDScript_vhge2")
-
+script = ExtResource("1_5c8ml")
 
 [node name="Background" type="Sprite2D" parent="."]
 visible = false
@@ -111,7 +85,6 @@ texture_filter = 2
 texture_repeat = 1
 position = Vector2(-144, 1453)
 scale = Vector2(0.97925, 0.979167)
-
 region_enabled = true
 region_rect = Rect2(0, 0, 1024, 576)
 
@@ -129,10 +102,12 @@ grow_vertical = 2
 texture = ExtResource("1_lm5vn")
 
 [node name="Player" parent="." instance=ExtResource("2_wqky6")]
-
 position = Vector2(141, -15)
 disable_mode = 2
 safe_margin = 5.0
+
+[node name="PauseMenu" parent="Player" instance=ExtResource("4_3hsco")]
+process_mode = 3
 
 [node name="player camera" type="Camera2D" parent="Player"]
 position = Vector2(-1, 2)
@@ -147,6 +122,7 @@ editor_draw_limits = true
 position = Vector2(504, -295)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+light_mask = 2
 position = Vector2(-1549, 294)
 shape = SubResource("RectangleShape2D_1v0c4")
 
@@ -329,4 +305,3 @@ shape = SubResource("RectangleShape2D_jkagy")
 [node name="CollisionShape2D45" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-1451, 202)
 shape = SubResource("RectangleShape2D_jkagy")
-

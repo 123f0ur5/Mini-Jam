@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3de0xpofvcwc"]
+[gd_scene load_steps=2 format=3 uid="uid://c3de0xpofvcwc"]
 
-[ext_resource type="PackedScene" uid="uid://cbmpisglt1kp6" path="res://scene/pauseMenu.tscn" id="2_2cgpn"]
 [ext_resource type="PackedScene" uid="uid://b7elepxpsbos8" path="res://scene/world.tscn" id="3_65p7r"]
 
 [node name="Main" type="Node2D"]
 
 [node name="World" parent="." instance=ExtResource("3_65p7r")]
 process_mode = 1
-
-[node name="PauseMenu" parent="." instance=ExtResource("2_2cgpn")]
-process_mode = 3
