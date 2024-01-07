@@ -1,10 +1,7 @@
 extends CharacterBody2D
 
-const attack_button = KEY_SPACE
-
 var movement_speed = 40.0
-var distancia_aceitavel = 30;
-var som_ataque
+var min_distance = 100;
 
 @onready var sprite = get_node("Sprite2D")
 @onready var walkTimer = get_node("WalkTimer")
@@ -13,10 +10,7 @@ func _physics_process(delta):
 	movement()
 	
 	# Kill Action
-	if Input.is_action_just_pressed("ui_accept"):
-		if is_instance_valid($/root/Main/World/BotTest) and position.distance_to($/root/Main/World/BotTest.position) < distancia_aceitavel:
-			$/root/Main/World/BotTest.on_damage_received()
-	
+	check_attack()
 
 func movement():
 	var x_move = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -26,7 +20,30 @@ func movement():
 	velocity = move.normalized() * movement_speed
 	move_and_slide()
 	
-	if move.x > 0:
+	if move.x > 0: 
 		sprite.flip_h = true
 	elif move.x < 0:
 		sprite.flip_h = false
+
+func kill_survivor(survivor):
+	survivor.on_damage_received()
+
+func find_closest_survivor():
+	var closest_survivor = null
+	var closest_distance = min_distance
+
+	for survivor in get_tree().get_nodes_in_group("SurvivorGroup"):
+		if is_instance_valid(survivor):
+			var distance = position.distance_to(survivor.global_position)
+			if distance < closest_distance:
+				closest_distance = distance
+				closest_survivor = survivor
+
+	return closest_survivor
+
+func check_attack():
+	if Input.is_action_just_pressed("ui_accept"):
+		var closest_survivor : Node2D = find_closest_survivor()
+
+		if closest_survivor != null and closest_survivor.position.distance_to(global_position) < min_distance:
+			kill_survivor(closest_survivor as Node2D)
