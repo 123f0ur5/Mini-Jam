@@ -1,11 +1,33 @@
 [gd_scene load_steps=4 format=3 uid="uid://b7elepxpsbos8"]
 
-[ext_resource type="Script" path="res://script/npcGenerator.gd" id="1_dt50r"]
 [ext_resource type="Texture2D" uid="uid://6qwcacxtgwmh" path="res://assets/background.jpeg" id="1_x82vv"]
 [ext_resource type="PackedScene" uid="uid://crtq5rj75npbm" path="res://scene/player.tscn" id="2_wqky6"]
 
+[sub_resource type="GDScript" id="GDScript_vhge2"]
+script/source = "extends Node2D
+
+var numeroNPCs = 20
+var arraySurvivors = []
+var survivor_scene = preload(\"res://scene/mob.tscn\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	for i in numeroNPCs:
+		add_survivor()
+		
+	pass # Replace with function body.
+
+func add_survivor():
+	var survivor = survivor_scene.instantiate()
+	arraySurvivors.append(survivor)
+	add_child(survivor)
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
 [node name="World" type="Node2D"]
-script = ExtResource("1_dt50r")
+script = SubResource("GDScript_vhge2")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 2
