@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 var movement_speed = 40.0
 var min_distance = 100;
 

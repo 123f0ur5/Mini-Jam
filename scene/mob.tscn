@@ -3,21 +3,23 @@
 [ext_resource type="Script" path="res://script/mob.gd" id="1_3jqta"]
 [ext_resource type="Texture2D" uid="uid://dfwu5cn51cmc" path="res://icon.svg" id="2_6p6mu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_syu83"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wrvlh"]
+radius = 9.58575
+height = 26.5138
 
 [node name="Mob" type="Node"]
 
 [node name="Mob" type="CharacterBody2D" parent="."]
 position = Vector2(317, 50)
-collision_mask = 2
 script = ExtResource("1_3jqta")
 
 [node name="Sprite2D" type="Sprite2D" parent="Mob"]
 texture = ExtResource("2_6p6mu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Mob"]
+position = Vector2(1, -4)
 scale = Vector2(6.41942, 4.90311)
-shape = SubResource("RectangleShape2D_syu83")
+shape = SubResource("CapsuleShape2D_wrvlh")
 
 [node name="Timer" type="Timer" parent="Mob"]
 autostart = true
