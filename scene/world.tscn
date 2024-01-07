@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7elepxpsbos8"]
+[gd_scene load_steps=4 format=3 uid="uid://b7elepxpsbos8"]
 
+[ext_resource type="Script" path="res://script/npcGenerator.gd" id="1_dt50r"]
 [ext_resource type="Texture2D" uid="uid://6qwcacxtgwmh" path="res://assets/background.jpeg" id="1_x82vv"]
 [ext_resource type="PackedScene" uid="uid://crtq5rj75npbm" path="res://scene/player.tscn" id="2_wqky6"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_dt50r")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 2
